@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home_weather"
+        android:icon="@drawable/wthr"
+        android:title="@string/home_weather" />
+    <item
+        android:id="@+id/home_temp"
+        android:icon="@drawable/tmp"
+        android:title="@string/home_temperature" />
+    <item
+        android:id="@+id/home_humidity"
+        android:icon="@drawable/hmdty"
+        android:title="@string/home_humidity" />
+    <item
+        android:id="@+id/home_wind"
+        android:icon="@drawable/wnd"
+        android:title="@string/home_wind" />
+</menu>

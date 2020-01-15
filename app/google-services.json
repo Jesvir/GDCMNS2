@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "370760919478",
+    "firebase_url": "https://gdcmns-iot.firebaseio.com",
+    "project_id": "gdcmns-iot",
+    "storage_bucket": "gdcmns-iot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370760919478:android:462562fdd0a9ddadb8f917",
+        "android_client_info": {
+          "package_name": "com.example.gdcmns2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370760919478-9jupkl7m5dufmoa0c99h6st90jvok7lh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gdcmns2",
+            "certificate_hash": "64f628571be3a36184ee14df30a37104e80c9fc7"
+          }
+        },
+        {
+          "client_id": "370760919478-rvn5tv831u7lskslp35j75diu1ckgd5r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeX2Bp5u2nkbxZU60lj9YLNE_9z8_K-54"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "370760919478-rvn5tv831u7lskslp35j75diu1ckgd5r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
