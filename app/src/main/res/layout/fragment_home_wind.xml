@@ -12,13 +12,13 @@
         android:layout_gravity="center">
 
         <TextView
-            android:id="@+id/temp"
+            android:id="@+id/tempWth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/andika"
-            android:text="Wind Graph"
+            android:text="@string/home_wind"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/temp">
+            app:layout_constraintTop_toBottomOf="@+id/tempWth">
 
             <com.jjoe64.graphview.GraphView
                 android:id="@+id/graph"

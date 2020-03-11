@@ -56,15 +56,15 @@
 
 
                     <TextView
-                        android:id="@+id/date"
+                        android:id="@+id/date_choosen"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:fontFamily="@font/andika"
-                        android:text="December 11, 2019"
+                        android:text="Date"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toTopOf="@+id/windirLogo"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/weatherLogo"
@@ -77,7 +77,7 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
                         android:fontFamily="@font/andika"
-                        android:text="Sunny"
+                        android:text="@string/home_weather"
                         android:textColor="#FFFFFF"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -93,8 +93,7 @@
                         android:layout_marginTop="8dp"
                         app:layout_constraintBottom_toTopOf="@+id/weather"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/sunny" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <DigitalClock
                         android:id="@+id/time_id"
@@ -103,10 +102,9 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:fontFamily="@font/andika"
-                        android:text="12:12 am"
                         android:textColor="@color/common_google_signin_btn_text_dark_default"
                         android:textSize="30sp"
-                        app:layout_constraintBottom_toTopOf="@+id/date"
+                        app:layout_constraintBottom_toTopOf="@+id/date_choosen"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/weatherLogo"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -118,7 +116,7 @@
                         android:layout_marginStart="8dp"
                         app:layout_constraintBottom_toTopOf="@+id/tempLogo"
                         app:layout_constraintStart_toEndOf="@+id/weatherLogo"
-                        app:layout_constraintTop_toBottomOf="@+id/date"
+                        app:layout_constraintTop_toBottomOf="@+id/date_choosen"
                         app:srcCompat="@drawable/windspeed" />
 
                     <ImageView
@@ -139,7 +137,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/humLogo"
                         app:layout_constraintEnd_toStartOf="@+id/winddirection"
                         app:layout_constraintStart_toEndOf="@+id/windspeed"
-                        app:layout_constraintTop_toBottomOf="@+id/date"
+                        app:layout_constraintTop_toBottomOf="@+id/date_choosen"
                         app:srcCompat="@drawable/windirection" />
 
                     <ImageView
@@ -166,7 +164,7 @@
                         android:textSize="16sp"
                         app:layout_constraintBottom_toTopOf="@+id/temperature"
                         app:layout_constraintStart_toEndOf="@+id/windspdLogo"
-                        app:layout_constraintTop_toBottomOf="@+id/date" />
+                        app:layout_constraintTop_toBottomOf="@+id/date_choosen" />
 
                     <TextView
                         android:id="@+id/temperature"
@@ -197,7 +195,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/humidity"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/windirLogo"
-                        app:layout_constraintTop_toBottomOf="@+id/date" />
+                        app:layout_constraintTop_toBottomOf="@+id/date_choosen" />
 
                     <TextView
                         android:id="@+id/humidity"
@@ -215,6 +213,21 @@
                         app:layout_constraintStart_toEndOf="@+id/humLogo"
                         app:layout_constraintTop_toBottomOf="@+id/winddirection" />
 
+                    <ImageView
+                        android:id="@+id/loadingImg2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="32dp"
+                        android:src="@drawable/loading"
+                        app:layout_constraintBottom_toBottomOf="@+id/weatherLogo"
+                        app:layout_constraintEnd_toEndOf="@+id/weatherLogo"
+                        app:layout_constraintHorizontal_bias="0.6"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/weatherLogo" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
@@ -228,7 +241,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/data-card">
-
 
 
         </FrameLayout>

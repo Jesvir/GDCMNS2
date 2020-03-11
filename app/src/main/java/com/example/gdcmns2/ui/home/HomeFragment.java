@@ -1,10 +1,13 @@
 package com.example.gdcmns2.ui.home;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,8 +29,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
 
 public class HomeFragment extends Fragment {
 
@@ -35,10 +36,12 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
-    DatabaseReference ref;
+    DatabaseReference ref,ref2;
     TextView tempVal,humVal,speed,direction,weather,date_now,time_now;
     ImageView wthrLogo;
-
+    FirebaseDatabase database;
+    AnimationDrawable animationDrawable;
+    ImageView loading;
 
 
     private HomeTemperature homeTemperature;
@@ -57,9 +60,11 @@ public class HomeFragment extends Fragment {
         weather = (TextView)TempView.findViewById(R.id.weather);
         speed = (TextView)TempView.findViewById(R.id.windspeed);
         direction = (TextView)TempView.findViewById(R.id.winddirection);
-        date_now = (TextView)TempView.findViewById(R.id.date);
+        date_now = (TextView)TempView.findViewById(R.id.date_choosen);
         time_now = (TextView)TempView.findViewById(R.id.time_id);
         wthrLogo = (ImageView)TempView.findViewById(R.id.weatherLogo);
+        loading = (ImageView)TempView.findViewById(R.id.loadingImg2);
+        animationDrawable = (AnimationDrawable)loading.getDrawable();
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat format = new SimpleDateFormat("hh:mm aa");
@@ -117,7 +122,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
+        animationDrawable.start();
         ref = FirebaseDatabase.getInstance().getReference();
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -128,6 +133,54 @@ public class HomeFragment extends Fragment {
                 weather.setText(wthr);
                 humVal.setText(hum+" %");
                 tempVal.setText(temp+" °C");//Fix soon for the °F
+
+//                Animation animFadeIn = AnimationUtils.loadAnimation(getContext(),R.anim.fade_in);
+//                Animation animFadeOut = AnimationUtils.loadAnimation(getContext(),R.anim.fade_out);
+                String Sunny ="Sunny";
+                String Raining = "Raining";
+                String Night = "Night";
+                String RNight = "Raining.";
+                String Dawn = "Dawn";
+
+
+                if (wthr.equals(Sunny))
+                {
+//                    wthrLogo.startAnimation(animFadeIn);
+//                    wthrLogo.startAnimation(animFadeIn);
+                    wthrLogo.setImageResource(R.drawable.sunny);
+
+
+                }
+                else if(wthr.equals((Raining)))
+                {
+//                    wthrLogo.startAnimation(animFadeIn);
+                    wthrLogo.setImageResource(R.drawable.rainday);
+
+                }
+                else if(wthr.equals((Night)))
+                {
+//                    wthrLogo.startAnimation(animFadeIn);
+                    wthrLogo.setImageResource(R.drawable.night);
+
+                }
+                else if(wthr.equals((RNight)))
+                {
+                    //wthrLogo.startAnimation(animFadeIn);
+                    wthrLogo.setImageResource(R.drawable.rainnight);
+
+                }
+
+                else if(wthr.equals((Dawn)))
+                {
+                    //wthrLogo.startAnimation(animFadeIn);
+                    wthrLogo.setImageResource(R.drawable.dawn);
+
+                }
+                wthrLogo.bringToFront();
+                loading.setVisibility(View.GONE);
+                animationDrawable.stop();
+
+                return;
             }
 
             @Override

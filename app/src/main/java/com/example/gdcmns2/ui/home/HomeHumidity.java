@@ -1,10 +1,14 @@
 package com.example.gdcmns2.ui.home;
 
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -38,9 +42,15 @@ public class HomeHumidity extends Fragment {
     GraphView graphView;
     LineGraphSeries series;
 
+    DatePickerDialog dpd;
+
+
     public Calendar calendar;
     public SimpleDateFormat dateFormat;
     public String date;
+    public Button selDateBtn;
+    public TextView dateSelected;
+    int day,month,year;
 
 
     public HomeHumidity() {
@@ -56,32 +66,90 @@ public class HomeHumidity extends Fragment {
 
 
         graphView = (GraphView) HomeHumidityView.findViewById(R.id.graph);
-        series = new LineGraphSeries();
-        graphView.addSeries(series);
+        selDateBtn = (Button) HomeHumidityView.findViewById(R.id.date_pick);
+        dateSelected = (TextView) HomeHumidityView.findViewById(R.id.date_choosen);
 
-
-        series.setDrawDataPoints(true);
-        series.setDataPointsRadius(7);
-        series.setThickness(3);
-
-        graphView.getViewport().setXAxisBoundsManual(true);
-        graphView.getViewport().setMinX(0);
-        graphView.getViewport().setMaxX(23);
-
-//        GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
-//        gridLabel.setHorizontalAxisTitle("Time");
-
-        graphView.getViewport().setScalable(true);
-        graphView.getViewport().setScalableY(true);
-        graphView.getViewport().setScrollable(true);
-        graphView.getViewport().setScrollableY(true);
-        graphView.getGridLabelRenderer().setTextSize(20f);
-        graphView.getGridLabelRenderer().reloadStyles();
 
 
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("MM-dd-yyyy");
         date = dateFormat.format(calendar.getTime());
+
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        month = calendar.get(Calendar.MONTH);
+        year = calendar.get(Calendar.YEAR);
+
+
+        selDateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dpd = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                        month = month+1;
+                        dateSelected.setText(String.format("%02d", month)+"-"+String.format("%02d", dayOfMonth)+"-"+year);
+
+                        //Changes the data on the graph
+                        Query query = ref.orderByChild("Date").equalTo(dateSelected.getText().toString());
+
+                        query.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                DataPoint[] dp= new DataPoint[(int) dataSnapshot.getChildrenCount()];
+                                int index=0;
+                                for (DataSnapshot myDataSnapshot : dataSnapshot.getChildren())
+                                {
+                                    HumValue humValue = myDataSnapshot.getValue(HumValue.class);
+                                    dp[index]=new DataPoint(humValue.getTime(),humValue.getHighest_Humidity());
+                                    index++;
+                                }
+                                series.resetData(dp);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        //end of data change
+                    }
+                },year,month,day);
+                dpd.show();
+
+
+                dpd.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+            }
+        });
+
+        series = new LineGraphSeries();
+        graphView.addSeries(series);
+
+        graphView.getViewport().setXAxisBoundsManual(true);
+        graphView.getViewport().setMinX(0);
+        graphView.getViewport().setMaxX(23);
+
+        series.setDrawDataPoints(true);
+        series.setDataPointsRadius(4);
+        series.setThickness(3);
+
+
+//        GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
+//        gridLabel.setHorizontalAxisTitle("Time");
+//        gridLabel.setHorizontalAxisTitleTextSize(35f);
+//        gridLabel.setHorizontalAxisTitleColor(Color.BLACK);
+
+        graphView.getViewport().setScalable(true);
+        graphView.getViewport().setScalableY(true);
+        graphView.getViewport().setScrollable(true);
+        graphView.getViewport().setScrollableY(true);
+
+        graphView.getGridLabelRenderer().setTextSize(20f);
+        graphView.getGridLabelRenderer().reloadStyles();
+
+
+
 
         database = FirebaseDatabase.getInstance();
         ref=database.getReference("StreetLight_1/Data");
@@ -92,7 +160,9 @@ public class HomeHumidity extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Query query = ref.orderByChild("Date").equalTo(date);
+
+        dateSelected.setText(date);
+        Query query = ref.orderByChild("Date").equalTo(dateSelected.getText().toString());
 
         query.addValueEventListener(new ValueEventListener() {
             @Override

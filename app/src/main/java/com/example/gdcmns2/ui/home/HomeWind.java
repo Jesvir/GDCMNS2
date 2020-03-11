@@ -69,7 +69,7 @@ public class HomeWind extends Fragment {
         graphView.getViewport().setMaxX(23);
 
         series.setDrawDataPoints(true);
-        series.setDataPointsRadius(7);
+        series.setDataPointsRadius(4);
         series.setThickness(3);
 
         graphView.getViewport().setScalable(true);

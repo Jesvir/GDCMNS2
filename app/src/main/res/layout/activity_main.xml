@@ -20,8 +20,8 @@
             android:layout_width="186dp"
             android:layout_height="186dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="86dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="64dp"
             app:srcCompat="@drawable/app_logo" />
 
 

@@ -66,6 +66,7 @@ public class Registration extends AppCompatActivity {
         _cpassword = (EditText) findViewById(R.id.confirm_password);
         btn_submit = (Button) findViewById(R.id.submitBtn);
         btn_cancel = (Button) findViewById(R.id.cancelBtn);
+
         myCalendar = Calendar.getInstance();
         day = myCalendar.get(Calendar.DAY_OF_MONTH);
         month = myCalendar.get(Calendar.MONTH);

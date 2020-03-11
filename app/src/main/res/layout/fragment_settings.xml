@@ -1,19 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_settings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/submitBtn"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/andika"
+        android:text="Add Streetlight"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        app:icon="@drawable/ic_add_circle_outline_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="2dp">
+
+    </com.google.android.material.button.MaterialButton>
+
+    <FrameLayout
+        android:id="@+id/settings_frame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submitBtn">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/settings_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+
+    <!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:id="@+id/card"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_marginStart="32dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginEnd="32dp"-->
+<!--        app:cardElevation="5dp"-->
+<!--        android:minHeight="180dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/submitBtn">-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="190dp">-->
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView2"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="24dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginEnd="24dp"-->
+<!--                android:layout_marginBottom="8dp"-->
+<!--                android:fontFamily="@font/andika"-->
+<!--                android:text="Light"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textSize="14sp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/restart"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/light"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/text" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/text"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="24dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginEnd="24dp"-->
+<!--                android:fontFamily="@font/andika"-->
+<!--                android:text="Option"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textSize="14sp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/textView2"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/option"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/set_streetlight_name" />-->
+
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/restart"-->
+<!--                style="?attr/materialButtonOutlinedStyle"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:layout_marginBottom="8dp"-->
+<!--                android:fontFamily="@font/andika"-->
+<!--                android:onClick="ClickedOff"-->
+<!--                android:text="Reboot Pi"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="#4CAF50"-->
+<!--                android:textSize="14sp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/shutdown"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:strokeColor="#4CAF50">-->
+
+<!--            </com.google.android.material.button.MaterialButton>-->
+
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/shutdown"-->
+<!--                style="?attr/materialButtonOutlinedStyle"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginBottom="8dp"-->
+<!--                android:fontFamily="@font/andika"-->
+<!--                android:onClick="ClickedOff"-->
+<!--                android:text="Shutdown Pi"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="@color/colorRed"-->
+<!--                android:textSize="14sp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/restart"-->
+<!--                app:strokeColor="@color/colorRed">-->
+
+<!--            </com.google.android.material.button.MaterialButton>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/set_streetlight_name"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/andika"-->
+<!--                android:text="StreetLight No.1"-->
+<!--                android:textSize="16sp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <com.google.android.material.button.MaterialButtonToggleGroup-->
+<!--                android:id="@+id/option"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="24dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginEnd="24dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/text"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/set_streetlight_name"-->
+<!--                app:singleSelection="true">-->
+
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/manx"-->
+<!--                    style="?attr/materialButtonOutlinedStyle"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/andika"-->
+<!--                    android:text="Man"-->
+<!--                    tools:layout_editor_absoluteX="249dp"-->
+<!--                    tools:layout_editor_absoluteY="35dp" />-->
+
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/autox"-->
+<!--                    style="?attr/materialButtonOutlinedStyle"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/andika"-->
+<!--                    android:text="Auto" />-->
+<!--            </com.google.android.material.button.MaterialButtonToggleGroup>-->
+
+
+<!--            <com.google.android.material.button.MaterialButtonToggleGroup-->
+<!--                android:id="@+id/light"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="24dp"-->
+<!--                android:layout_marginTop="4dp"-->
+<!--                android:layout_marginEnd="24dp"-->
+<!--                android:layout_marginBottom="4dp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/shutdown"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/textView2"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/text"-->
+<!--                app:singleSelection="true">-->
+
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/off"-->
+<!--                    style="?attr/materialButtonOutlinedStyle"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/andika"-->
+<!--                    android:text="Off"-->
+<!--                    tools:layout_editor_absoluteX="249dp"-->
+<!--                    tools:layout_editor_absoluteY="35dp" />-->
+
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/on"-->
+<!--                    style="?attr/materialButtonOutlinedStyle"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/andika"-->
+<!--                    android:text="On" />-->
+<!--            </com.google.android.material.button.MaterialButtonToggleGroup>-->
+
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    </com.google.android.material.card.MaterialCardView>-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

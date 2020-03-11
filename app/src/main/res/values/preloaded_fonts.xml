@@ -2,5 +2,9 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/andika</item>
+        <item>@font/brawler</item>
+        <item>@font/bungee_hairline</item>
+        <item>@font/geostar</item>
+        <item>@font/varela_round</item>
     </array>
 </resources>
