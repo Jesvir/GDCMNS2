@@ -179,7 +179,7 @@ public class HomeTemperature extends Fragment {
         graphView.getGridLabelRenderer().reloadStyles();
 
         database = FirebaseDatabase.getInstance();
-        ref=database.getReference("StreetLight_1/Data");
+        ref=database.getReference("Streetlights/StreetLight_1/Data");
 
 
 

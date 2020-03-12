@@ -77,7 +77,7 @@ public class HomeWeather extends Fragment  {
         HomeWeatherView = inflater.inflate(R.layout.fragment_home_weather, container, false);
         option = (MaterialButtonToggleGroup)HomeWeatherView.findViewById(R.id.option);
 
-        ref = FirebaseDatabase.getInstance().getReference().child("StreetLight_1/Data");
+        ref = FirebaseDatabase.getInstance().getReference().child("Streetlights/StreetLight_1/Data");
         ref.keepSynced(true);
 
 
